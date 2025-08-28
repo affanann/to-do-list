@@ -48,7 +48,7 @@ export default function App() {
           <button className="btn" onClick={addTodo}>Tambah</button>
         </div>
 
-        <ul className="list min-h-[120px]">
+        <ul className="list">
           {todos.map(todo => (
             <TodoItem key={todo.id} todo={todo} onToggle={toggleTodo} onRemove={removeTodo} />
           ))}
