@@ -2,55 +2,65 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Base */
 @layer base {
   html, body, #root { height: 100%; }
-  body { @apply m-0 bg-brand-dark text-[#EAEAEA] font-sans; }
+  body { @apply m-0 bg-[#0B0C10] text-[#EAEAEA] antialiased; }
 }
 
 @layer components {
-  .page { @apply min-h-full flex items-center justify-center p-8; }
+  .page {
+    padding: max(1rem, env(safe-area-inset-top))
+              max(1rem, env(safe-area-inset-right))
+              max(1rem, env(safe-area-inset-bottom))
+              max(1rem, env(safe-area-inset-left));
+    @apply min-h-full flex items-start sm:items-center justify-center;
+  }
 
   .card {
-    @apply w-full max-w-[800px]
-           bg-brand-gray/60 backdrop-blur-md border border-white/10
-           shadow-glow rounded-3xl p-7;
+    @apply w-full max-w-[880px] mx-auto
+           bg-[#1F2430]/60 backdrop-blur-md border border-white/10
+           shadow-[0_0_40px_rgba(245,197,39,0.15)]
+           rounded-3xl p-5 sm:p-7 md:p-8;
   }
 
-  .header { @apply flex items-center justify-between mb-4; }
-  .header h1 {
-    @apply m-0 text-[28px] font-extrabold text-brand-yellow drop-shadow;
-  }
+  .header { @apply flex items-center justify-between mb-4 sm:mb-5; }
+  .header h1 { @apply m-0 text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#F5C527] drop-shadow; }
 
-  .add-row { @apply flex gap-3 my-3 mb-5; }
+  .add-row { @apply flex flex-col sm:flex-row gap-3 sm:gap-4 mb-5; }
 
   .input {
-    @apply flex-1 px-4 py-3 rounded-2xl outline-none
-           text-white placeholder-white/50
-           bg-brand-muted border border-white/10;
+    @apply w-full rounded-2xl outline-none
+           bg-[#2A2F3A] text-white placeholder-white/50
+           px-4 py-3 sm:py-4 border border-white/10;
   }
 
   .btn {
-    @apply px-6 py-3 rounded-2xl border-0 font-bold cursor-pointer
-           bg-brand-yellow text-black transition active:scale-95;
+    @apply inline-flex items-center justify-center rounded-2xl
+           font-semibold bg-[#F5C527] text-black
+           transition active:scale-[0.98]
+           w-full sm:w-auto px-5 sm:px-6 py-3 sm:py-3.5;
   }
 
-  .list { @apply list-none m-0 p-0 border-t border-white/10; }
-  .empty { @apply py-6 text-center text-white/60; }
+  .list { @apply list-none m-0 p-0 border-t border-white/10 rounded-2xl bg-transparent; }
+  .empty { @apply py-8 text-center text-white/60; }
 
-  .todo-item { @apply flex items-center py-3 border-b border-white/10; }
+  .todo-item { @apply flex items-center py-3 sm:py-3.5 px-1 sm:px-2 border-b border-white/5; }
 
   .check {
-    @apply w-6 h-6 rounded-full grid place-items-center
-           bg-transparent text-black cursor-pointer mr-3
-           border-2 border-white/50 transition;
+    @apply grid place-items-center rounded-full transition
+           mr-3 w-10 h-10 sm:w-7 sm:h-7
+           border-2 border-white/40 hover:border-white/70 bg-transparent text-black;
   }
-  .check.checked { @apply bg-brand-yellow border-brand-yellow; }
+  .check.checked { @apply bg-[#F5C527] border-[#F5C527]; }
 
-  .text { @apply flex-1 text-[18px]; }
-  .text.done { @apply text-white/50 line-through; }
+  .text { @apply flex-1 text-base sm:text-lg leading-relaxed; }
+  .text.done { @apply text-white/40 line-through; }
 
   .delete {
-    @apply w-9 h-9 rounded-xl bg-[#222a33] border border-white/10
-           text-white cursor-pointer opacity-70 hover:opacity-100 grid place-items-center;
+    @apply grid place-items-center rounded-xl
+           w-11 h-11 sm:w-9 sm:h-9
+           bg-white/10 border border-white/10 text-white
+           opacity-80 hover:opacity-100;
   }
 }
